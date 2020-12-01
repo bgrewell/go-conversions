@@ -1,5 +1,12 @@
 package conversions
 
+import (
+	"fmt"
+	"math"
+	"strconv"
+	"strings"
+)
+
 func StringBitRateToInt(rate string) (value int64, err error) {
 	numeric := ""
 	units := ""
@@ -54,11 +61,5 @@ func IntBitRateToString(rate int64) string {
 		value = value / 1000
 	}
 	srate := fmt.Sprintf("%.2f%s", value, suffix)
-	log.WithFields(log.Fields{
-		"rate":   rate,
-		"value":  value,
-		"suffix": suffix,
-		"srate":  srate,
-	}).Debug("results of bits to string conversion")
 	return srate
 }
