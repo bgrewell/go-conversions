@@ -24,7 +24,7 @@ func StringBitRateToInt(rate string) (value int64, err error) {
 	if err != nil {
 		return 0, fmt.Errorf("couldn't parse '%v' into float", rate)
 	}
-	unitsLower := strings.ToLower(units)
+	unitsLower := strings.ToLower(strings.Trim(units))
 	switch {
 	case strings.HasPrefix(unitsLower, "k"):
 		multiplier = 1000
