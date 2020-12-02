@@ -7,6 +7,17 @@ import (
 	"strings"
 )
 
+type UnitsFormatter interface {
+	Format(units string) string
+}
+
+type DefaultFormatter struct {
+}
+
+func (df DefaultFormatter) Format(units string) string {
+	return fmt.Sprintf("%sbit", units)
+}
+
 func StringBitRateToInt(rate string) (value int64, err error) {
 	numeric := ""
 	units := ""
@@ -42,24 +53,29 @@ func StringBitRateToInt(rate string) (value int64, err error) {
 }
 
 func IntBitRateToString(rate int64) string {
-	suffix := "bit"
+	return IntBitRateToStringFmt(rate, DefaultFormatter{})
+}
+
+func IntBitRateToStringFmt(rate int64, formatter UnitsFormatter) string {
+	units := "b"
 	value := float64(rate)
 	if value >= 1000 {
-		suffix = "kbit"
+		units = "k"
 		value = value / 1000
 	}
 	if value >= 1000 {
-		suffix = "mbit"
+		units = "m"
 		value = value / 1000
 	}
 	if value >= 1000 {
-		suffix = "gbit"
+		units = "g"
 		value = value / 1000
 	}
 	if value >= 1000 {
-		suffix = "tbit"
+		units = "t"
 		value = value / 1000
 	}
+	suffix := formatter.Format(units)
 	srate := fmt.Sprintf("%.2f%s", value, suffix)
 	return srate
 }
