@@ -5,7 +5,7 @@ import (
 	"unicode/utf16"
 )
 
-func ConvertToUTF16LE(input string) (output string) {
+func ConvertToUTF16LEString(input string) (output string) {
 	enc := ConvertToUTF16Slice(input)
 	return string(ConvertUTF16ToLEBytes(enc))
 }
