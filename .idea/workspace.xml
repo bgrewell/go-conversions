@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="312b0598-d050-4c05-87c0-20fcb0da88e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/inet.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inet_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoding_test.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +45,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
-  <component name="RunManager" selected="Go Test.TestConvertToUTF16LEBase64String in github.com/BGrewell/go-conversions">
+  <component name="RunManager" selected="Go Test.TestInet4_haton in github.com/BGrewell/go-conversions">
     <configuration name="TestConvertToUTF16LEBase64String in github.com/BGrewell/go-conversions" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="go-conversions" />
       <working_directory value="$PROJECT_DIR$" />
@@ -68,8 +67,32 @@
       <pattern value="^\QTestConvertToUTF16LEString\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestInet4_aton in github.com/BGrewell/go-conversions" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go-conversions" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/BGrewell/go-conversions" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestInet4_aton\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestInet4_haton in github.com/BGrewell/go-conversions" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go-conversions" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/BGrewell/go-conversions" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestInet4_haton\E$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestInet4_haton in github.com/BGrewell/go-conversions" />
+        <item itemvalue="Go Test.TestInet4_aton in github.com/BGrewell/go-conversions" />
         <item itemvalue="Go Test.TestConvertToUTF16LEBase64String in github.com/BGrewell/go-conversions" />
         <item itemvalue="Go Test.TestConvertToUTF16LEString in encoding_test.go" />
       </list>
@@ -96,22 +119,22 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="485" y="270" key="CommitChangelistDialog2/0.0.3440.1400@0.0.3440.1400" timestamp="1606952083475" />
-    <state width="1690" height="491" key="GridCell.Tab.0.bottom" timestamp="1607021501647">
+    <state width="1674" height="400" key="GridCell.Tab.0.bottom" timestamp="1607463787965">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1690" height="491" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1607021501647" />
-    <state width="1690" height="491" key="GridCell.Tab.0.center" timestamp="1607021501646">
+    <state width="1674" height="400" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1607463787965" />
+    <state width="1674" height="400" key="GridCell.Tab.0.center" timestamp="1607463787965">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1690" height="491" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1607021501646" />
-    <state width="1690" height="491" key="GridCell.Tab.0.left" timestamp="1607021501646">
+    <state width="1674" height="400" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1607463787965" />
+    <state width="1674" height="400" key="GridCell.Tab.0.left" timestamp="1607463787965">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1690" height="491" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1607021501646" />
-    <state width="1690" height="491" key="GridCell.Tab.0.right" timestamp="1607021501646">
+    <state width="1674" height="400" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1607463787965" />
+    <state width="1674" height="400" key="GridCell.Tab.0.right" timestamp="1607463787965">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1690" height="491" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1607021501646" />
+    <state width="1674" height="400" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1607463787965" />
     <state width="1690" height="491" key="GridCell.Tab.1.bottom" timestamp="1607021501647">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
