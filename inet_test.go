@@ -1,6 +1,9 @@
 package conversions
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestInet4_aton(t *testing.T) {
 	type args struct {
@@ -113,6 +116,40 @@ func TestInet4_ntoha(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := Inet4_ntoha(tt.args.ip); got != tt.want {
 				t.Errorf("Inet4_ntoha() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestIpv4MaskString(t *testing.T) {
+	type args struct {
+		m []byte
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "class A",
+			args: args{m: []byte{0xFF, 0x00, 0x00, 0x00}},
+			want: "255.0.0.0",
+		},
+		{
+			name: "class C",
+			args: args{m: []byte{0xFF, 0xFF, 0xFF, 0x00}},
+			want: "255.255.255.0",
+		},
+		{
+			name: "/27",
+			args: args{m: []byte{255, 255, 255, 224}},
+			want: "255.255.255.224",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Ipv4MaskString(tt.args.m); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Ipv4MaskString() = %v, want %v", got, tt.want)
 			}
 		})
 	}
