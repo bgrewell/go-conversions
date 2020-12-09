@@ -3,15 +3,30 @@ package conversions
 import (
 	"fmt"
 	"net"
+	"strconv"
+	"strings"
 )
 
 // Ipv4MaskString Converts 4 byte masks to dotted decimal format (in host order)
-func Ipv4MaskString(m []byte) string {
+func Ipv4MaskString(m []byte) (mask string, err error) {
     if len(m) != 4 {
-        panic("ipv4Mask: len must be 4 bytes")
+        return "", fmt.Errorf("mask must contain 4 bytes")
     }
 
-    return fmt.Sprintf("%d.%d.%d.%d", m[0], m[1], m[2], m[3])
+    return fmt.Sprintf("%d.%d.%d.%d", m[0], m[1], m[2], m[3]), nil
+}
+
+func Ipv4MaskBytes(mask string) (m []byte, err error) {
+	m = make([]byte, 4)
+	octets := strings.Split(mask, ".")
+	for idx, octet := range octets {
+		v, err := strconv.Atoi(octet)
+		if err != nil {
+			return nil, fmt.Errorf("failed to parse mask: %v", err)
+		}
+		m[idx] = byte(v)
+	}
+	return m, nil
 }
 
 // Inet4_aton Converts from an IP address in dotted decimal format x.x.x.x to a uint32 in in network byte order
