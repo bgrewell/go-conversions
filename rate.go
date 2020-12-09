@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type BinaryPrefix int
+type BinaryPrefix uint64
 
 const (
 	PREFIX_BITS BinaryPrefix = 1
@@ -41,5 +41,6 @@ func convertByteCountsToRate(lastBytes uint64, currentBytes uint64, lastTime int
 	period := float32(currentTime - lastTime) / float32(int64(time.Second))
 	change := (currentBytes - lastBytes) * BITS_PER_BYTE
 	rate := float32(change) / period
-	return rate / float32(units)
+	adjRate := float64(rate) / float64(units)
+	return float32(adjRate)
 }
