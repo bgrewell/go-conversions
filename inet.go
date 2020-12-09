@@ -5,6 +5,15 @@ import (
 	"net"
 )
 
+// Ipv4MaskString Converts 4 byte masks to dotted decimal format (in host order)
+func Ipv4MaskString(m []byte) string {
+    if len(m) != 4 {
+        panic("ipv4Mask: len must be 4 bytes")
+    }
+
+    return fmt.Sprintf("%d.%d.%d.%d", m[0], m[1], m[2], m[3])
+}
+
 // Inet4_aton Converts from an IP address in dotted decimal format x.x.x.x to a uint32 in in network byte order
 // byte order
 func Inet4_aton(ip string) (ip_int uint32) {
