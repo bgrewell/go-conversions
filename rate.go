@@ -25,7 +25,7 @@ func ConvertStringToUInt64orNil(uintStr string) *uint64 {
 	return &value
 }
 
-func ConvertStringToUint64or0(uintStr string) uint64 {
+func ConvertStringToUInt64or0(uintStr string) uint64 {
 	value := ConvertStringToUInt64orNil(uintStr)
 	if value == nil {
 		return 0
