@@ -11,6 +11,12 @@ import (
 func ConvertNanosecondsToStringTime(nanoseconds int64) string {
 	units := "ns"
 	t := float64(nanoseconds)
+	sym := ""
+	if t < 0 {
+		sym = "-"
+		t = math.Abs(t)
+	}
+
 	if t > 1000 {
 		units = "us"
 		t = t / 1000
@@ -24,7 +30,7 @@ func ConvertNanosecondsToStringTime(nanoseconds int64) string {
 		t = t / 1000
 	}
 
-	return fmt.Sprintf("%f %s", t, units)
+	return fmt.Sprintf("%s%f %s", sym, t, units)
 }
 
 func ConvertStringTimeToNanoseconds(value string) (t int64, err error) {
