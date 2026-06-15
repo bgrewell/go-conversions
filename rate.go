@@ -8,7 +8,7 @@ import (
 type BinaryPrefix uint64
 
 const (
-	PREFIX_BITS BinaryPrefix = 1
+	PREFIX_BITS     BinaryPrefix = 1
 	PREFIX_KILOBITS BinaryPrefix = 1 * 1000
 	PREFIX_MEGABITS BinaryPrefix = 1 * 1000 * 1000
 	PREFIX_GIGABITS BinaryPrefix = 1 * 1000 * 1000 * 1000
@@ -38,7 +38,7 @@ func ConvertToRateMbps(lastBytes uint64, currentBytes uint64, lastTime int64, cu
 }
 
 func convertByteCountsToRate(lastBytes uint64, currentBytes uint64, lastTime int64, currentTime int64, units BinaryPrefix) float32 {
-	period := float32(currentTime - lastTime) / float32(int64(time.Second))
+	period := float32(currentTime-lastTime) / float32(int64(time.Second))
 	change := (currentBytes - lastBytes) * BITS_PER_BYTE
 	rate := float32(change) / period
 	adjRate := float64(rate) / float64(units)

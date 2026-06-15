@@ -2,9 +2,6 @@ package conversions
 
 import (
 	"fmt"
-	"math"
-	"strconv"
-	"strings"
 )
 
 type UnitsFormatter interface {
@@ -18,42 +15,24 @@ func (df DefaultFormatter) Format(units string) string {
 	return fmt.Sprintf("%sbit", units)
 }
 
+// StringBitRateToInt parses a bit-rate string to bits/sec. It distinguishes SI
+// decimal prefixes (K/M/G/T → 1e3/1e6/1e9/1e12, e.g. "100Mbps") from IEC binary
+// prefixes (Ki/Mi/Gi/Ti → 2^10/2^20/2^30/2^40, e.g. "100Mibps"), so 100Mbps and
+// 100Mibps are not the same. The "bps"/"bit" suffix is optional, and the result
+// is overflow-guarded.
 func StringBitRateToInt(rate string) (value int64, err error) {
-	numeric := ""
-	units := ""
-	valuef := 0.0
-	multiplier := 1.0
-	for _, c := range rate {
-		switch {
-		case c >= '0' && c <= '9' || c == '.':
-			numeric += string(c)
-		default:
-			units += string(c)
-		}
-	}
-	valuef, err = strconv.ParseFloat(numeric, 64)
-	if err != nil {
-		return 0, fmt.Errorf("couldn't parse '%v' into float", rate)
-	}
-	unitsLower := strings.ToLower(strings.TrimSpace(units))
-	switch {
-	case strings.HasPrefix(unitsLower, "k"):
-		multiplier = 1000
-	case strings.HasPrefix(unitsLower, "m"):
-		multiplier = 1000 * 1000
-	case strings.HasPrefix(unitsLower, "g"):
-		multiplier = 1000 * 1000 * 1000
-	case unitsLower == "":
-		multiplier = 1
-	default:
-		return 0, fmt.Errorf("invalid units specified '%v'", units)
-	}
-	value = int64(math.Round(valuef * multiplier))
-	return value, err
+	return parseScaled(rate)
 }
 
 func IntBitRateToString(rate int64) string {
 	return IntBitRateToStringFmt(rate, DefaultFormatter{})
+}
+
+// IntBitRateToStringIEC renders bits/sec with IEC binary prefixes (Kibit, Mibit,
+// …, powers of 1024).
+func IntBitRateToStringIEC(rate int64) string {
+	v, suffix := humanize(float64(rate), 1024, []string{"", "Ki", "Mi", "Gi", "Ti"})
+	return fmt.Sprintf("%.2f%sbit", v, suffix)
 }
 
 func IntBitRateToStringFmt(rate int64, formatter UnitsFormatter) string {
