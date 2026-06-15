@@ -15,22 +15,22 @@ func TestInet4_aton(t *testing.T) {
 		wantIp_int uint32
 	}{
 		{
-			name: "localhost",
-			args: args{ip: "1.0.0.127"},
+			name:       "localhost",
+			args:       args{ip: "1.0.0.127"},
 			wantIp_int: 16777343,
 		},
 		{
-			name: "192.168.253.1",
-			args: args{ip: "1.253.168.192"},
+			name:       "192.168.253.1",
+			args:       args{ip: "1.253.168.192"},
 			wantIp_int: 33401024,
 		},
 	}
 	for _, tt := range tests {
-	t.Run(tt.name, func(t *testing.T) {
-		if gotIp_int := Inet4_aton(tt.args.ip); gotIp_int != tt.wantIp_int {
-			t.Errorf("Inet4_aton() = %v, want %v", gotIp_int, tt.wantIp_int)
-		}
-	})
+		t.Run(tt.name, func(t *testing.T) {
+			if gotIp_int := Inet4_aton(tt.args.ip); gotIp_int != tt.wantIp_int {
+				t.Errorf("Inet4_aton() = %v, want %v", gotIp_int, tt.wantIp_int)
+			}
+		})
 	}
 }
 
@@ -44,13 +44,13 @@ func TestInet4_haton(t *testing.T) {
 		wantIp_int uint32
 	}{
 		{
-			name: "localhost",
-			args: args{ip: "127.0.0.1"},
+			name:       "localhost",
+			args:       args{ip: "127.0.0.1"},
 			wantIp_int: 16777343,
 		},
 		{
-			name: "192.168.253.1",
-			args: args{ip: "192.168.253.1"},
+			name:       "192.168.253.1",
+			args:       args{ip: "192.168.253.1"},
 			wantIp_int: 33401024,
 		},
 	}
@@ -148,7 +148,11 @@ func TestIpv4MaskString(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Ipv4MaskString(tt.args.m); !reflect.DeepEqual(got, tt.want) {
+			got, err := Ipv4MaskString(tt.args.m)
+			if err != nil {
+				t.Fatalf("Ipv4MaskString() error = %v", err)
+			}
+			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Ipv4MaskString() = %v, want %v", got, tt.want)
 			}
 		})

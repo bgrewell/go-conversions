@@ -9,11 +9,11 @@ import (
 
 // Ipv4MaskString Converts 4 byte masks to dotted decimal format (in host order)
 func Ipv4MaskString(m []byte) (mask string, err error) {
-    if len(m) != 4 {
-        return "", fmt.Errorf("mask must contain 4 bytes")
-    }
+	if len(m) != 4 {
+		return "", fmt.Errorf("mask must contain 4 bytes")
+	}
 
-    return fmt.Sprintf("%d.%d.%d.%d", m[0], m[1], m[2], m[3]), nil
+	return fmt.Sprintf("%d.%d.%d.%d", m[0], m[1], m[2], m[3]), nil
 }
 
 func Ipv4MaskBytes(mask string) (m []byte, err error) {
